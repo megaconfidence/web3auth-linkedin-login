@@ -143,6 +143,7 @@ function App() {
 
     return (
         <div className="app">
+            <div>{process.env.REACT_APP_WEB3AUTH_CLIENT_ID}</div>
             {!provider ?
                 <button onClick={login}>Login</button> :
                 <>
