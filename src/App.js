@@ -10,8 +10,6 @@ function App() {
     const [web3Auth, setWeb3Auth] = useState(null);
     const [provider, setProvider] = useState(null);
 
-    const chainId = "0x1";
-    // const clientId = process.env.REACT_APP_WEB3AUTH_CLIENT_ID;
     const clientId = "BHi14QieWUwhc2XGDZr_yOXNfvKlS8ICfnk2gLTRyb0XATlWSRujSOopEdZg0x0JyUgM5vqo8-QaQ36YXfCmc9M";
 
     const login = async () => {
@@ -19,7 +17,6 @@ function App() {
         const authProvider = await web3Auth.connectTo(WALLET_ADAPTERS.OPENLOGIN, {
             loginProvider: "jwt",
             extraLoginOptions: {
-                // domain: process.env.REACT_APP_AUTH0_DOMAIN,
                 domain: "https://dev-ikf6aadow74xbqtx.us.auth0.com",
                 verifierIdField: "sub",
             },
@@ -85,9 +82,9 @@ function App() {
             from: accounts[0],
             to: accounts[0],
             value: web3.utils.toWei('0.0001'),
-            chainId,
+            chainId: 1,
         });
-        setDisplay(txRes.transactionHash);
+        setDisplay(txRes);
     }
 
     const sendTransaction = async () => {
@@ -99,9 +96,9 @@ function App() {
             from: accounts[0],
             to: accounts[0],
             value: web3.utils.toWei('0.0001'),
-            chainId,
+            chainId: 1,
         });
-        setDisplay(txRes.transactionHash);
+        setDisplay(txRes);
     }
 
     useEffect(() => {
@@ -111,7 +108,7 @@ function App() {
                     clientId,
                     web3AuthNetwork: "testnet",
                     chainConfig: {
-                        chainId,
+                        chainId: "0x1",
                         chainNamespace: CHAIN_NAMESPACES.EIP155,
                     },
                 });
@@ -124,7 +121,6 @@ function App() {
                             jwt: {
                                 typeOfLogin: "jwt",
                                 verifier: "linkedin-verifier",
-                                // clientId: process.env.REACT_APP_AUTH0_CLIENT_ID,
                                 clientId: "pncBT2vIcN1BiKNTtkIGkDC22mYZGQUL",
                             },
                         },
@@ -146,7 +142,6 @@ function App() {
 
     return (
         <div className="app">
-            <div>{process.env.NODE_ENV}</div>
             {!provider ?
                 <button onClick={login}>Login</button> :
                 <>
