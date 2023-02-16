@@ -11,14 +11,16 @@ function App() {
     const [provider, setProvider] = useState(null);
 
     const chainId = "0x1";
-    const clientId = process.env.REACT_APP_WEB3AUTH_CLIENT_ID;
+    // const clientId = process.env.REACT_APP_WEB3AUTH_CLIENT_ID;
+    const clientId = "BHi14QieWUwhc2XGDZr_yOXNfvKlS8ICfnk2gLTRyb0XATlWSRujSOopEdZg0x0JyUgM5vqo8-QaQ36YXfCmc9M";
 
     const login = async () => {
         if (!web3Auth) return console.log("web3auth not initialized");
         const authProvider = await web3Auth.connectTo(WALLET_ADAPTERS.OPENLOGIN, {
             loginProvider: "jwt",
             extraLoginOptions: {
-                domain: process.env.REACT_APP_AUTH0_DOMAIN,
+                // domain: process.env.REACT_APP_AUTH0_DOMAIN,
+                domain: "https://dev-ikf6aadow74xbqtx.us.auth0.com",
                 verifierIdField: "sub",
             },
         });
@@ -122,7 +124,8 @@ function App() {
                             jwt: {
                                 typeOfLogin: "jwt",
                                 verifier: "linkedin-verifier",
-                                clientId: process.env.REACT_APP_AUTH0_CLIENT_ID,
+                                // clientId: process.env.REACT_APP_AUTH0_CLIENT_ID,
+                                clientId: "pncBT2vIcN1BiKNTtkIGkDC22mYZGQUL",
                             },
                         },
                     },
@@ -143,7 +146,7 @@ function App() {
 
     return (
         <div className="app">
-            <div>{process.env.REACT_APP_WEB3AUTH_CLIENT_ID}</div>
+            <div>{process.env.NODE_ENV}</div>
             {!provider ?
                 <button onClick={login}>Login</button> :
                 <>
